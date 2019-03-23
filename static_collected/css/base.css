@@ -1,0 +1,39 @@
+.laji-info{
+    text-align: center;
+    font-size: 3em;
+}
+.content1{
+    background: #394ad1;
+    padding-top: 30px;
+    padding-bottom: 30px; 
+    color: #eeeeee;
+}
+body{
+    margin-top: 70px;
+}
+.content2{
+    display: none
+}
+#tablediv > div > div{
+    background: #e6e3f8;
+    border-radius: 2em;
+    margin-top: 20px;
+}
+body > div.navbar.navbar-default.navbar-fixed-top{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+body > div.navbar.navbar-default.navbar-fixed-top > div > div > a.nav-title{
+    font-size: 1.8em;
+}
+body > div.content1 > div > div > div > button{
+    background: #544e52;
+    width: 9em;
+    height: 3em;
+}
+#myModal{
+    margin-top: 200px!important;
+}
+a:hover{
+    cursor: pointer;
+}

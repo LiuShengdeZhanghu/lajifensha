@@ -1,0 +1,255 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垃圾案例数据库</title>
+    <link REL="SHORTCUT ICON" HREF="{% static "image/favicon.ico" %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-3.3.7/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select/dist/css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search-form.css' %}">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'css/bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'css/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/base2.css' %}">
+    <script src="{% static 'js/baiyeshi.js' %}"></script>
+    <script src="{% static 'js/echarts.js' %}"></script>
+    <script src="{% static 'js/gra.js' %}"></script>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#"><img src="{% static 'image/small_logo.png' %}" alt=""></a>
+                <a href="#" class="nav-title">I-SAID</a>
+            </div>
+            <nav class="blog-nav">
+                <ul class="nav navbar-nav nav-pills navbar-right">
+                    <li role="presentation"><a href="{% url "index_page" %}">案例分析</a></li>
+                    <li role="presentation"><a href="{% url 'anli_page' %}">案例数据库</a></li>
+                    <li role="presentation" class="active"><a href="#">贝叶斯演化</a></li>
+                    <li role="presentation"><a href="{% url "process_page" %}">处理流程</a></li>
+                    <li role="presentation"><a href="{% url "introduce_page" %}">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+{#案例分析模态框#}
+    <div class="modal fade bs-example-modal-lg" id="myKeyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width: fit-content">
+            <div class="modal-content" style="width: fit-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">案例演化结果</h4>
+                </div>
+                <div class="modal-body" id="Keymodal-body">
+                    <h4>搜索案例的TF-IDF关键词表</h4>
+                    <table class="table table-hover table-striped table-bordered">
+                      <tbody id="table-body">
+
+                      </tbody>
+                    </table>
+                    <div id="tf-idfdiv" style="height: 500px;width: 700px; margin-left: auto; margin-right: auto;"></div>
+
+                    <h4>案例的相似度分析</h4>
+                    <table class="table table-hover table-bordered">
+                        <thead><tr><th colspan="21">案例的关键词到案例的语义距离</th></tr></thead>
+                        <tbody id="table-body2">
+                            <tr>
+                                <td></td>
+                                <td>垃圾</td>
+                                <td>项目</td>
+                                <td>生活</td>
+                                <td>建设</td>
+                                <td>环保</td>
+                                <td>城市</td>
+                                <td>烟气</td>
+                                <td>排放</td>
+                                <td>发展</td>
+                                <td>发电厂</td>
+                                <td>设施</td>
+                                <td>运营</td>
+                                <td>工程</td>
+                                <td>填埋</td>
+                                <td>能力</td>
+                                <td>国家</td>
+                                <td>系统</td>
+                                <td>分类</td>
+                                <td>居民</td>
+                                <td>社会</td>
+                            </tr>
+                            <tr>
+                                <td>A类</td>
+                                <td>0.943</td>
+                                <td>0.919</td>
+                                <td>0.937</td>
+                                <td>0.423</td>
+                                <td>0.431</td>
+                                <td>0.429</td>
+                                <td>0.815</td>
+                                <td>0.660</td>
+                                <td>0.402</td>
+                                <td>0.202</td>
+                                <td>0.271</td>
+                                <td>0.261</td>
+                                <td>0.116</td>
+                                <td>0.149</td>
+                                <td>0.163</td>
+                                <td>0.122</td>
+                                <td>0.188</td>
+                                <td>0.224</td>
+                                <td>0.194</td>
+                                <td>0.110</td>
+                            </tr>
+                            <tr>
+                                <td>B类</td>
+                                <td>0.933</td>
+                                <td>0.916</td>
+                                <td>0.931</td>
+                                <td>0.432</td>
+                                <td>0.427</td>
+                                <td>0.436</td>
+                                <td>0.820</td>
+                                <td>0.663</td>
+                                <td>0.408</td>
+                                <td>0.210</td>
+                                <td>0.287</td>
+                                <td>0.266</td>
+                                <td>0.150</td>
+                                <td>0.177</td>
+                                <td>0.178</td>
+                                <td>0.143</td>
+                                <td>0.215</td>
+                                <td>0.240</td>
+                                <td>0.217</td>
+                                <td>0.144</td>
+                            </tr>
+                            <tr>
+                                <td>C类</td>
+                                <td>1.202</td>
+                                <td>1.149</td>
+                                <td>1.177</td>
+                                <td>0.921</td>
+                                <td>0.875</td>
+                                <td>0.838</td>
+                                <td>1.056</td>
+                                <td>0.985</td>
+                                <td>0.864</td>
+                                <td>0.736</td>
+                                <td>0.799</td>
+                                <td>0.787</td>
+                                <td>0.744</td>
+                                <td>0.719</td>
+                                <td>0.749</td>
+                                <td>0.671</td>
+                                <td>0.735</td>
+                                <td>0.740</td>
+                                <td>0.728</td>
+                                <td>0.707</td>
+                            </tr>
+                            <tr>
+                                <td>D类</td>
+                                <td>0.930</td>
+                                <td>0.919</td>
+                                <td>0.949</td>
+                                <td>0.453</td>
+                                <td>0.455</td>
+                                <td>0.482</td>
+                                <td>0.829</td>
+                                <td>0.653</td>
+                                <td>0.442</td>
+                                <td>0.267</td>
+                                <td>0.332</td>
+                                <td>0.310</td>
+                                <td>0.220</td>
+                                <td>0.240</td>
+                                <td>0.257</td>
+                                <td>0.222</td>
+                                <td>0.260</td>
+                                <td>0.296</td>
+                                <td>0.277</td>
+                                <td>0.224</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>案例的相似度计算</h4>
+                    <div id="chartTable" style="width:540px;height: 400px; margin-left: auto; margin-right: auto;"></div>
+                    <div class="text-center">
+                        <canvas id="gra" width="450" height="450"></canvas>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-lg" id="myBaiModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">贝叶斯演化结果</h4>
+          </div>
+          <div class="modal-body" id="Baimodal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="anlititle">案例推演</span><br>
+                    <span>输入案例演化贝叶斯</span><br>
+                    <div class="input-div center-block">
+                        <textarea class="anli-txt text-center" id="anli-txt" placeholder="输入案例文本"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-default btnyan" onclick="anli()">案例分析</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"  style="color: #eeeeee">
+                    <span class="anlititle">关键因子贝叶斯演化</span><br>
+                    <span>在以下相关词语中选择关键字进行贝叶斯演化</span><br>
+                    <select class="selectpicker selectdemo" multiple data-live-search="true">
+                            <option value="1">生活垃圾</option>
+                            <option value="2">居民</option>
+                            <option value="3">选址</option>
+                            <option value="4">政府</option>
+                            <option value="5">排放标准</option>
+                            <option value="6">污染</option>
+                            <option value="7">环评</option>
+                            <option value="8">填埋场</option>
+                            <option value="9">冲突</option>
+                            <option value="10">意见</option>
+                    </select><br>
+                    <button type="button" class="btn btn-default btnyan" onclick="baiyan()">开始演化</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{#    <script src="{% static "js/TweenLite.min.js" %}"></script>#}
+{#    <script src="{% static "js/EasePack.min.js" %}"></script>#}
+{#    <script src="{% static "js/rAF.js" %}"></script>#}
+{#    <script src="{% static "js/demo-1.js" %}"></script>#}
+{#    背景动画#}
+<script>
+
+</script>
+</body>
+</html>

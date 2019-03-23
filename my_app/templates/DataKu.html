@@ -1,0 +1,166 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垃圾案例数据库</title>
+    <link REL="SHORTCUT ICON" HREF="{% static "image/favicon.ico" %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-3.3.7/css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'css/bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="{% static 'js/test.js' %}"></script>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#"><img src="{% static 'image/small_logo.png' %}" alt=""></a>
+                <a href="#" class="nav-title">I-SAID</a>
+            </div>
+            <nav class="blog-nav">
+                <ul class="nav navbar-nav nav-pills navbar-right">
+                    <li role="presentation"><a href="{% url "index_page" %}">案例分析</a></li>
+                    <li role="presentation" class="active"><a href="#">案例数据库</a></li>
+                    <li role="presentation"><a href="{% url 'beiyeshi_page' %}">贝叶斯演化</a></li>
+                    <li role="presentation"><a href="{% url "process_page" %}">处理流程</a></li>
+                    <li role="presentation"><a href="{% url "introduce_page" %}">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="content1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="laji-info">垃圾案例库查询</div>
+                    <form class="center-block">
+                        <div class="form-group">
+                            <label for="Title">事件名称</label>
+                            <input type="text" class="form-control" id="Title" placeholder="案例名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="Address">事件发生地点</label>
+                            <input type="text" class="form-control" id="Address" placeholder="输入地点">
+                        </div>
+                        <div class="form-group">
+                            <label for="DateTime">案例时间</label>
+                            <input type="text" class="form-control" id="DateTime" placeholder="输入时间">
+                        </div>                 
+                    </form>
+                    <button type="button" onclick="ko()" class="btn btn-primary btn-default">查询</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{#    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">#}
+{#  Launch demo modal#}
+{#    </button>#}
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">案例事件发展经历</h4>
+          </div>
+          <div class="modal-body" id="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content2" id="tablediv">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead><tr>
+                            <th>编号</th>
+                            <th>地点</th>
+                            <th>时间</th>
+                            <th>案例名称</th>
+                            <th>事件结果</th>
+                            <th>案例特点</th>
+                            <th><button type="button" onclick="fb()" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></th>
+                        </tr></thead>
+                        <tbody id="tbody">
+{#                            <tr><th scope="row">1</th>#}
+{#                                <td>南京天井洼</td>#}
+{#                                <td>2009-03-12</td>#}
+{#                                <td>天井洼垃圾焚烧厂项目</td>#}
+{#                                <td>顺利建成</td>#}
+{#                                <td>专家论证未公开，补偿标准模糊</td>#}
+{#                            </tr>#}
+{#                            <tr><th scope="row">2</th>#}
+{#                                <td>上海江桥</td>#}
+{#                                <td>2009-04-11</td>#}
+{#                                <td>江桥生活垃圾焚烧发电厂项目再扩建</td>#}
+{#                                <td>暂停扩建</td>#}
+{#                                <td>周边不断商业开发使垃圾焚烧厂限制民众生活</td>#}
+{#                            </tr>#}
+{#                            <tr><th scope="row">3</th>#}
+{#                                <td>秦皇岛</td>#}
+{#                                <td>2009-04-25</td>#}
+{#                                <td>西部垃圾焚烧厂项目</td>#}
+{#                                <td>停工建设</td>#}
+{#                                <td>政府环评造假，失信于民</td>#}
+{#                            </tr>#}
+{#                            <tr><th scope="row">4</th>#}
+{#                                <td>深圳白鸽湖</td>#}
+{#                                <td>2009-05-20</td>#}
+{#                                <td>白鸽湖垃圾焚烧厂项目</td>#}
+{#                                <td>暂缓实施</td>#}
+{#                                <td>选址靠近市中心遭民众反对</td>#}
+{#                            </tr>#}
+{#                            <tr><th scope="row">5</th>#}
+{#                                <td>北京阿苏卫</td>#}
+{#                                <td>2009-08-14</td>#}
+{#                                <td>阿苏卫垃圾焚烧发电厂项目</td>#}
+{#                                <td>尚未建成</td>#}
+{#                                <td>政府背后操作程序不透明，监管不到位，使焚烧厂臭气熏天失信于民</td>#}
+{#                            </tr>#}
+{#                            <tr><th scope="row">6</th>#}
+{#                                <td>江苏吴江</td>#}
+{#                                <td>2009-10-13</td>#}
+{#                                <td>吴江垃圾焚烧发电厂项目</td>#}
+{#                                <td>地址建成</td>#}
+{#                                <td>园林式建筑，美化环境</td>#}
+{#                            </tr>#}
+{#                            <tr><th scope="row">7</th>#}
+{#                                <td>广州番禺</td>#}
+{#                                <td>2009-11-19</td>#}
+{#                                <td>广州番禺垃圾焚烧厂项目</td>#}
+{#                                <td>地址建成</td>#}
+{#                                <td>政府监管不足，行政不透明</td>#}
+{#                            </tr>#}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="content3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="anlititle">案例分析</span>
+                    <div>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-file fize" aria-hidden="true"></span><br>分词标注</button>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-list-alt fize" aria-hidden="true"></span><br>词频统计</button>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-text-height fize" aria-hidden="true"></span><br>案例分类</button>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-barcode fize" aria-hidden="true"></span><br>关键词提取</button>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-qrcode fize" aria-hidden="true"></span><br>相似案例</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</body>
+</html>

@@ -1,0 +1,49 @@
+body{
+    margin-top: 70px;
+    background: url("../image/image.jpg");
+    background-size: cover;
+	background-position: center center center bottom;
+    background-repeat: no-repeat;
+}
+body > div.navbar.navbar-default.navbar-fixed-top{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+body > div.navbar.navbar-default.navbar-fixed-top > div > div > a.nav-title{
+    font-size: 1.8em;
+}
+.content4{
+    text-align: center;
+    padding-top: 110px;
+}
+.content4 .anlititle{
+    font-size: 2em;
+}
+.fize{
+    font-size: 4em;
+}
+button{
+    outline: none;
+}
+body > div.content4 > div > div > div > div{
+    width: 600px!important;
+    margin-top: 40px;
+}
+body > div.content4 > div > div > div > div > button{
+    height: 70px;
+}
+.btnyan{
+    margin-top: 30px;
+    height: 40px;
+    font-size: 1.3em;
+    width: 150px;
+}
+#myModal{
+    margin-top: 150px!important;
+}
+.anli-txt{
+    height: 70px;
+    width: 600px;
+    border-radius: 15px;
+    outline: none;
+}
